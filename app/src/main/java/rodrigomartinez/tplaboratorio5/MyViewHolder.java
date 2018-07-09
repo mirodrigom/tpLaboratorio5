@@ -18,7 +18,6 @@ public class MyViewHolder extends RecyclerView.ViewHolder implements View.OnClic
 
     private MyOnItemClick listener;
 
-
     public MyViewHolder(View itemView, MyOnItemClick listener) {
         super(itemView);
         this.tituloNoticia = (TextView) itemView.findViewById(R.id.tituloNoticia);
