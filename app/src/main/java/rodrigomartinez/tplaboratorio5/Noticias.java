@@ -1,5 +1,6 @@
 package rodrigomartinez.tplaboratorio5;
 
+import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -76,9 +77,24 @@ public class Noticias {
     Funciones
      */
 
-    public String castDateToString(Date fecha)
+    public String castDateToString(Date fecha, String pattern)
     {
-        SimpleDateFormat formatoFecha = new SimpleDateFormat("dd-MMM-yyyy");
+        SimpleDateFormat formatoFecha = new SimpleDateFormat(pattern);
         return formatoFecha.format(fecha);
+    }
+
+    public Date castStringToDate(String fecha, String pattern)
+    {
+        Date date = null;
+        SimpleDateFormat formatter = new SimpleDateFormat(pattern);
+        String subFecha = fecha.split(":")[0];
+        String fechaFinal = subFecha.substring(5, subFecha.length() - 3);
+
+        try {
+            date = formatter.parse(fechaFinal);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        return date;
     }
 }

@@ -25,12 +25,11 @@ public class MainActivity extends AppCompatActivity implements MyOnItemClick, Ha
         this.vista = new Vista(this);
         this.controlador = new Controlador(this.vista);
         this.vista.getRv().setLayoutManager(new LinearLayoutManager(this));
-        miAdaptador = new MyAdapter(this.controlador.getListaNoticias(),this);
-        this.vista.getRv().setAdapter(miAdaptador);
+
         this.miHandler = new Handler(this);
 
 
-        HiloDatos hilo = new HiloDatos("https://help.ubnt.com/hc/en-us/articles/220066768-UniFi-How-to-Install-Update-via-APT-on-Debian-or-Ubuntu", this.miHandler);
+        HiloDatos hilo = new HiloDatos("http://www.telam.com.ar/rss2/deportes.xml", this.miHandler);
         Thread t1 = new Thread(hilo);
         t1.start();
 
@@ -44,7 +43,8 @@ public class MainActivity extends AppCompatActivity implements MyOnItemClick, Ha
     @Override
     public boolean handleMessage(Message msg)
     {
-
+        miAdaptador = new MyAdapter(Parser.ParsearTelam(msg.obj.toString()),this);
+        this.vista.getRv().setAdapter(miAdaptador);
         return false;
     }
 }

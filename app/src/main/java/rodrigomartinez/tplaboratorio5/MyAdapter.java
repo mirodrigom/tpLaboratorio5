@@ -38,7 +38,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyViewHolder>
         holder.tituloNoticia.setText(noticia.getTitulo());
         holder.descripcionNoticia.setText(noticia.getDescripcion());
         //holder.imagenNoticia.setImageBitmap(BitmapFactory.decodeByteArray(noticia.getImagenByte(), 0, noticia.getImagenByte().length));
-        holder.fechaNoticia.setText(noticia.castDateToString(noticia.getFecha()));
+        holder.fechaNoticia.setText(noticia.castDateToString(noticia.getFecha(),"dd-MMM-yyyy"));
     }
 
     @Override
